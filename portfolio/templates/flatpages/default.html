@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+<h2>{{flatpage.title}}</h2>
+
+{{flatpage.content|markdown}}
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block js %}
+<script type="text/javascript" src="/site_media/js/mochikit/MochiKit/MochiKit.js"></script>
+<script type="text/javascript" src="/site_media/js/dragdropreorder.js"></script>
+{% endblock %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<h3>Gallery: {{gallery.title}}</h3>
+
+
+<div id="drag-container">
+{% for image in gallery.all_images %}
+<div class="draggable" id="image-{{image.id}}">{% thumbnail image.image 100x100 as thumb %}
+<img src="{{ thumb.absolute_url }}" width="{{thumb.width}}" height="{{thumb.height}}" alt="{{image.title}}"/>
+</div>{% endfor %}
+</div>
+<div class="clear"></div>
+{% endblock %}

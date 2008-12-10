@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<div>{% if gi.prev_image %}<a href="{{ gi.prev_image.get_absolute_url }}">&lt;&lt; prev</a>{% endif %}
+<b><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></b>
+{% if gi.next_image %}<a href="{{gi.next_image.get_absolute_url}}">next &gt;&gt;</a>{% endif %}</div>
+
+
+<img src="{% thumbnail image.image 900x900 %}" />
+<h2>{{image.title}}</h2>
+{% if image.description %}{{image.description|markdown}}{% endif %}
+{% if image.medium %}<b>medium:</b> {{ image.medium }}{% endif %}
+
+{% if gi.has_other_galleries %}
+<div>
+<b>This image also appears in other galleries:</b>
+<ul>
+{% for gallery in gi.other_galleries %}
+<li><a href="{{ gallery.gallery.get_absolute_url }}">{{ gallery.gallery.title }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+
+
+{% endblock %}

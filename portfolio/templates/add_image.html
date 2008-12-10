@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<form action="." method="post" enctype="multipart/form-data">
+<fieldset><legend>add image</legend>
+<table>
+ {{ form.as_table }}
+<tr><th>galleries</th>
+<td>
+{% for gallery in galleries %}
+<label><input type="checkbox" name="gallery_{{gallery.id}}"/> {{ gallery.title }}</label><br />
+{% endfor %}
+</td></tr>
+<tr><td colspan="2"><input type="submit" value="add image" /></td></tr>
+</table>
+</fieldset>
+</form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<html>
+<head><title>myopica: {% block title %}{% endblock %}</title>
+
+<style media="screen" type="text/css">
+@import "/site_media/css/site.css" ;
+</style>
+
+{% block css %}{% endblock %}
+{% block js %}{% endblock %}
+
+<link href="/feeds/main/" type="application/atom+xml" rel="alternate" title="Atom feed of all new images" />
+
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+
+
+<div id="wrapper">
+<h1 id="masthead"><span>myopica: {% block masthead %}{% endblock %}</span></h1>
+
+{% block content %}{% endblock %}
+
+</div>
+</body>
+</html>

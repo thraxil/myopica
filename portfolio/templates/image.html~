@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<div>{% if image.prev_image %}<a href="{{ image.prev_image.get_absolute_url }}">&lt;&lt; prev</a>{% endif %}
+<b>by date</b>
+{% if image.next_image %}<a href="{{image.next_image.get_absolute_url}}">next &gt;&gt;</a>{% endif %}</div>
+
+<img src="{% thumbnail image.image 900x900 %}" />
+<h2>{{image.title}}</h2>
+{% if image.description %}{{image.description|markdown}}{% endif %}
+{% if image.medium %}<b>medium:</b> {{ image.medium }}{% endif %}
+
+{% if image.galleryimage_set.all.count %}
+<b>Galleries:</b>
+<ul>
+{% for gallery in image.galleryimage_set.all %}
+<li><a href="{{ gallery.gallery.get_absolute_url }}">{{ gallery.gallery.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<form action="." method="post" enctype="multipart/form-data">
+<fieldset><legend>update image galleries</legend>
+<img src="{% thumbnail image.image 400x400 %}" />
+<table>
+<tr><th>galleries</th>
+<td>
+{% for gallery in galleries %}
+<label><input type="checkbox" 
+{% if gallery.image_in %}checked="checked"{% endif %}
+name="gallery_{{gallery.gallery.id}}"/> {{ gallery.gallery.title }}</label><br />
+{% endfor %}
+</td></tr>
+<tr><td colspan="2">
+<input type="submit" name="submit" value="update" />
+<input type="submit" name="submit" value="save and next" />
+</td></tr>
+</table>
+</fieldset>
+</form>
+
+{% endblock %}

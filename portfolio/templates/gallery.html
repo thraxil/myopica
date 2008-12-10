@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block feeds %}
+<link href="/feeds/gallery/{{ gallery.slug }}/" type="application/atom+xml" rel="alternate"
+      title="Atom feed of all new images in {{ gallery.title }}" />
+{% endblock %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<h3>Gallery: {{gallery.title}}</h3>
+{% if gallery.description %}{{gallery.description|markdown}}{% endif %}
+
+{% for image in gallery.all_images %}
+<div class="thumb">{% thumbnail image.image 100x100 crop as thumb %}
+<a href="{{gallery.get_absolute_url}}{{image.slug}}/" title="{{image.title}}"><img src="{{ thumb.absolute_url }}" width="{{thumb.width}}" height="{{thumb.height}}" alt="{{image.title}}"/></a>
+</div>{% endfor %}<div class="clear"/></div>
+
+
+{% endblock %}

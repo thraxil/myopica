@@ -1,0 +1,8 @@
+{% load thumbnail %}
+{% load markup %}
+
+<img src="http://myopica.org{% thumbnail obj.image 600x600 %}" alt="{{obj.title}}" />
+
+{{ obj.description|markdown }}
+
+

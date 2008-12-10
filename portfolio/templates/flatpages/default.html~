@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+<h1>blah!</h1>
+
+
+{% endfor %}
+
+
+{% endblock %}

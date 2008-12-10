@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load markup %}
+{% load thumbnail %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<div id="faux">
+<div id="main">
+
+</div>
+</div>
+
+{% endblock %}
