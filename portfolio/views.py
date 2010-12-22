@@ -1,11 +1,9 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from models import *
-import flickrapi
 from django.contrib.auth.decorators import login_required
 from forms import *
 from django.template.defaultfilters import slugify
-from datetime import datetime
 
 def index(request):
     images = Image.objects.all().order_by("-created")[:15]
@@ -106,106 +104,4 @@ def add_image(request):
         return render_to_response("add_image.html",dict(galleries=galleries,
                                                     form=AddImageForm()))
 
-import os
-class FlickrImage:
-    def __init__(self,flickr,id):
-        self.flickr = flickr
-        self.id = id
-        self.title = ""
-        self.taken = ""
-        self.uri = ""
-        self.date = "" #datetime.datetime.fromtimestamp(1130288532)
-        self.galleries = []
-
-    def add_gallery(self,gallery):
-        self.galleries.append(gallery)
-
-    def download(self):
-        base = "/var/tmp/myopica/media/"
-        d = datetime.fromtimestamp(int(self.date))
-        subdir = "images/%04d/%02d/%02d/" % (d.year,d.month,d.day)
-        dir = base + subdir
-        try:
-            os.makedirs(dir)
-        except:
-            pass
-        os.system("wget %s -P %s" % (self.url,dir))
-        filename = subdir + self.url.split("/")[-1]
-        return filename
-
-    def create(self):
-        slug = slugify(self.title)
-        created = datetime.fromtimestamp(int(self.date))
-        image = self.download()
-        i = Image.objects.create(slug=slug,title=self.title,image=image,created=created,description="",medium="")
-        for g in self.galleries:
-            i.add_to_gallery(g)
-
-import sys
-def import_from_flickr(request):
-    flickr = flickrapi.FlickrAPI("a3a8f82088e88d4228bbd169eea1d721")
-    sets = """sketches|large moleskine|small moleskine|one hour paintings|nearsighted and obsessive compulsive|myopica|volume 3|error and annihilation|abstract comics"""
-    flickr_sets = """621508|1520905|1550023|72157600068913439|72157594319315437|72157602372213076|72157603370455679|72157602921751456|72157602683198578"""
-    tags = "oil|pencil|abstract|watercolor|penink|colored pencil|acrylic"
-    flickr_tags = "oil|pencil|abstract|watercolor|pen|coloredpencil|acrylic"
-
-    sets_map = dict()
-    tags_map = dict()
-
-    images = dict()
-    def get_or_create_fi(id):
-        if id in images.keys():
-            return images[id]
-        else:
-            fi = FlickrImage(flickr,id)
-            images[id] = fi
-            return fi
-
-    for (set,id) in zip(sets.split("|"),flickr_sets.split("|")):
-        slug = slugify(set)
-        gallery = get_object_or_404(Gallery,slug=slug)
-        sets_map[slug] = (gallery,id)
-        photos = flickr.photosets_getPhotos(photoset_id=id,extras="date_upload,date_taken")
-
-        for photo in photos.photoset[0].photo:
-            i = get_or_create_fi(photo['id'])
-            i.title = photo['title']
-            i.date = photo['dateupload']
-            i.add_gallery(gallery)
-    for (tag,flickrtag) in zip(tags.split("|"),flickr_tags.split("|")):
-        slug = slugify(tag)
-        gallery = get_object_or_404(Gallery,slug=slug)
-        tags_map[slug] = (gallery,flickrtag)
-
-    for fi in sorted(images.values(),key=lambda x: x.date):
-        d = datetime.fromtimestamp(int(fi.date))
-        if d < datetime(2007,02,28):
-            continue
-        print fi.title
-        print fi.date
-        info = flickr.photos_getInfo(photo_id=fi.id,format='etree')
-
-        print str(info.find('photo').find('tags').findall('tag'))
-        for tag in info.find('photo').find('tags').findall('tag'):
-            if tags_map.has_key(tag.attrib['raw']):
-                gallery = tags_map[tag.attrib['raw']][0]
-                fi.add_gallery(gallery)
-        print str(fi.galleries)
-        photo = info.find('photo')
-        farm = photo.attrib['farm']
-        server = photo.attrib['server']
-        secret = photo.attrib['secret']
-        try:
-            secret = photo.attrib['originalsecret']
-        except:
-            pass
-        fi.url = "http://farm%s.static.flickr.com/%s/%s_%s_o.jpg" % (farm, server, fi.id, secret)
-        print fi.url
-        fi.create()
-    return HttpResponse("ok")
-        
-
-
-    
-    
 
