@@ -11,6 +11,8 @@ feeds = {
 
 urlpatterns = patterns('',
                        (r'^$', 'myopica.portfolio.views.index'),
+                       (r'^stream/$','myopica.portfolio.views.stream'),
+                       (r'^scroll/(?P<id>\d+)/$','myopica.portfolio.views.scroll'),
                        (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
                        (r'^admin/(.*)', admin.site.root),
                        (r'^accounts/login/$', 'django.contrib.auth.views.login'),

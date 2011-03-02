@@ -10,6 +10,12 @@ def index(request):
     galleries = Gallery.objects.all().order_by("ordinality")
     return render_to_response("index.html",dict(images=images,galleries=galleries))
 
+def stream(request):
+    return render_to_response("stream.html",dict(images=Image.objects.all().order_by("-id")[:15]))
+
+def scroll(request,id):
+    return render_to_response("scroll.html",dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
+
 def gallery(request,slug):
     gallery = get_object_or_404(Gallery,slug=slug)
     return render_to_response("gallery.html",dict(gallery=gallery))
