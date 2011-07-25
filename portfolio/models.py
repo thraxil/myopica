@@ -19,6 +19,7 @@ class Image(models.Model):
                 }
             }
                                      )
+    ahash = models.CharField(max_length=256,default="",null=True)
 
     def __unicode__(self):
         return self.title
