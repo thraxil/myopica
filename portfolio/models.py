@@ -20,6 +20,7 @@ class Image(models.Model):
             }
                                      )
     ahash = models.CharField(max_length=256,default="",null=True)
+    extension = models.CharField(max_length=256,default=".jpg",null=True)
 
     def __unicode__(self):
         return self.title
@@ -57,7 +58,7 @@ class Image(models.Model):
 
 class ImageAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-admin.site.register(Image,ImageAdmin)
+
 
 def count_galleries():
     return Gallery.objects.all().count()
@@ -108,7 +109,6 @@ def count_images():
 class GalleryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ('title','ordinality')
-admin.site.register(Gallery,GalleryAdmin)
 
 class GalleryImage(models.Model):
     gallery = models.ForeignKey(Gallery)
@@ -144,4 +144,4 @@ class GalleryImage(models.Model):
         return self.image.galleryimage_set.all().exclude(gallery=self.gallery)
 
 class GalleryImageAdmin(admin.ModelAdmin):pass
-admin.site.register(GalleryImage,GalleryImageAdmin)
+
