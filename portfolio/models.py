@@ -8,17 +8,6 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     medium = models.CharField(max_length=256,blank=True)
-    image = ImageWithThumbnailsField(upload_to="images/%Y/%m/%d",
-                                     thumbnail = {
-            'size' : (65,65)
-            },
-                                     extra_thumbnails={
-            'admin': {
-                'size': (70, 50),
-                'options': ('sharpen',),
-                }
-            }
-                                     )
     ahash = models.CharField(max_length=256,default="",null=True)
     extension = models.CharField(max_length=256,default=".jpg",null=True)
 

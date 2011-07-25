@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load markup %}
-{% load thumbnail %}
 {% block bodyclass %}index{% endblock %}
 {% block content %}
 
 <div class="gallery">
 <div class="strip">{% for image in images %}
-<div class="thumb">{% thumbnail image.image 100000x100 as thumb %}
-<a href="{{image.get_absolute_url}}" title="{{image.title}}"><img src="{{ thumb.absolute_url }}" width="{{thumb.width}}" height="{{thumb.height}}" alt="{{image.title}}"/></a>
+<div class="thumb">
+<a href="{{image.get_absolute_url}}" title="{{image.title}}"><img src="http://apomixis.thraxil.org/image/{{image.ahash}}/100h/{{image.id}}{{image.extension}}"
+			height="100" /></a>
 </div>{% endfor %}<div class="clear"/></div>
 </div></div>
 
@@ -21,9 +21,7 @@ All artwork is in the Public Domain. <a href="/books/">Books are available</a>.
 <div class="gthumb">
 
 
-{% thumbnail gallery.first_image.image 200x200 crop as thumb %}
-
-<a href="{{gallery.get_absolute_url}}"><img src="{{ thumb.absolute_url }}" width="{{thumb.width}}" height="{{thumb.height}}" alt="{{gallery.first_image.title}}"/></a>
+<a href="{{gallery.get_absolute_url}}"><img src="http://apomixis.thraxil.org/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
 <h3><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></h3>
 </div>
 

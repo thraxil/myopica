@@ -1,8 +1,9 @@
-{% load thumbnail %}
 {% for image in images %}
 
 <div id="{{image.id}}" class="latest">
-<img src="{% thumbnail image.image 900x900 %}" />
+<img src="http://apomixis.thraxil.org/image/{{image.ahash}}/960w/{{image.id}}{{image.extension}}" 
+alt="{{image.title}}"
+/>
 </div>
 
 {% endfor %}

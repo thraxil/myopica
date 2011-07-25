@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load markup %}
-{% load thumbnail %}
 {% block bodyclass %}index{% endblock %}
 {% block nav %}<div id="subnav">{% if image.prev_image %}<a href="{{ image.prev_image.get_absolute_url }}">&lt;&lt; newer</a>{% endif %}
 <b>[by date]</b>
@@ -8,8 +7,10 @@
 {% endblock %}
 {% block content %}
 
+<img src="http://apomixis.thraxil.org/image/{{image.ahash}}/960w/{{image.id}}{{image.extension}}" 
+alt="{{image.title}}"
+/>
 
-<img src="{% thumbnail image.image 900x900 %}" />
 <h2>{{image.title}}</h2>
 {% if image.description %}{{image.description|markdown}}{% endif %}
 {% if image.medium %}<b>medium:</b> {{ image.medium }}{% endif %}
