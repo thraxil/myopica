@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.markup',
+    'south',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
