@@ -4,6 +4,12 @@ from models import *
 from django.contrib.auth.decorators import login_required
 from forms import *
 from django.template.defaultfilters import slugify
+import urllib2
+from poster.encode import multipart_encode, MultipartParam
+from poster.streaminghttp import register_openers
+from simplejson import loads
+import os
+
 
 def index(request):
     images = Image.objects.all().order_by("-created")[:15]
@@ -94,11 +100,30 @@ def add_image(request):
             request.POST['slug'] = slugify(request.POST.get("title"))
         form = AddImageForm(request.POST,request.FILES)
         if form.is_valid():
-            img = form.save()
+            img = form.save(commit=False)
+            if request.FILES.get('image',None):
+                original_filename = request.FILES['image'].name
+                extension = os.path.splitext(original_filename)[1].lower()
+                if extension == ".jpeg":
+                    extension = ".jpg"
+                if extension not in [".jpg",".png",".gif"]:
+                    return HttpResponse("unsupported image format")
+                register_openers()
+                datagen, headers = multipart_encode((
+                        ("t","upload"),
+                        MultipartParam(name='image',fileobj=request.FILES['image'],
+                                       filename="image%s" % extension)))
+                req = urllib2.Request("http://apomixis.thraxil.org/", datagen, headers)
+                metadata = loads(urllib2.urlopen(req).read())
+                img.ahash = metadata["hash"]
+                img.extension = extension
+
+            img.save()
             for key in request.POST.keys():
                 if key.startswith("gallery_"):
                     g = get_object_or_404(Gallery,id=key[len("gallery_"):])
                     img.add_to_gallery(g)
+
             return HttpResponseRedirect(img.get_absolute_url())
         else:
             print "not valid"
