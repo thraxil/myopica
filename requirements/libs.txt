@@ -16,6 +16,5 @@ requirements/src/smartypants-1.6.0.2.tar.gz
 requirements/src/uuid-1.30.tar.gz
 requirements/src/django-devserver-0.0.1.tar.gz
 requirements/src/flickrapi-1.4.2.tar.gz
-requirements/src/psycopg2-2.2.1.tar.gz
-requirements/src/Imaging-1.1.7.tar.gz
+requirements/src/psycopg2-2.4-no-mx.tar.gz
 requirements/src/poster-0.7.0.tar.gz

@@ -1,5 +1,4 @@
 from django.db import models
-from sorl.thumbnail.fields import ImageWithThumbnailsField
 from django.contrib import admin
 
 class Image(models.Model):

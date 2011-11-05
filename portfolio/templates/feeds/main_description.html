@@ -1,7 +1,6 @@
-{% load thumbnail %}
 {% load markup %}
 
-<img src="http://myopica.org{% thumbnail obj.image 600x600 %}" alt="{{obj.title}}" />
+<img src="http://apomixis.thraxil.org/image/{{obj.ahash}}/960w960h/{{obj.id}}{{obj.extension}}" alt="{{obj.title}}" />
 
 {{ obj.description|markdown }}
 
