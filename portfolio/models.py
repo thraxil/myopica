@@ -1,14 +1,24 @@
 from django.db import models
 from django.contrib import admin
+from django.template.defaultfilters import slugify
 
 class Image(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=256,editable=False)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     medium = models.CharField(max_length=256,blank=True)
     ahash = models.CharField(max_length=256,default="",null=True)
     extension = models.CharField(max_length=256,default=".jpg",null=True)
+
+    def save(self,*args,**kwargs):
+        slug = slugify(self.title)[:255]
+        addto = 1
+        while Image.objects.filter(slug=slug).count() > 0:
+            slug = slug + str(addto)
+            addto += 1
+        self.slug = slug
+        super(Image, self).save(*args,**kwargs)
 
     def __unicode__(self):
         return self.title
