@@ -12,7 +12,6 @@ if os.path.exists(vedir):
 
 subprocess.call(["python",os.path.join(pwd,"pip.py"),"install",
                  "-E",os.path.join(pwd,"ve"),
-                 "--enable-site-packages",
                  "--requirement",os.path.join(pwd,"requirements/apps.txt")])
 
 # do not want to try to install the egg on 2.5
