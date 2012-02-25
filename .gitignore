@@ -4,3 +4,4 @@ ve
 .#*
 pip-log.txt
 local_settings.py
+distribute*.tar.gz
