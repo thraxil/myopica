@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import portfolio.models
 from django.conf import settings
-from simplejson import loads
+import simplejson
 
 class Command(BaseCommand):
     args = ''
