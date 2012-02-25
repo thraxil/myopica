@@ -32,8 +32,8 @@ class Command(BaseCommand):
         d['images'] = images
         galleryimages = []
         for gi in portfolio.models.GalleryImage.objects.all():
-            gi_data = dict(gallery_id=gi.gallery.id,
-                           image_id=gi.image.id,
+            gi_data = dict(gallery=gi.gallery.slug,
+                           image=gi.image.slug,
                            ordinality=gi.ordinality)
             galleryimages.append(gi_data)
         d['galleryimages'] = galleryimages
