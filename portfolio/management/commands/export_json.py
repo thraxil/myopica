@@ -37,7 +37,7 @@ class Command(BaseCommand):
                            ordinality=gi.ordinality)
             galleryimages.append(gi_data)
         d['galleryimages'] = galleryimages
-        print dumps(d)
+        print simplejson.dumps(d)
 
 
 
