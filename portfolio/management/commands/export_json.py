@@ -24,8 +24,8 @@ class Command(BaseCommand):
                           title = i.title,
                           slug = i.slug,
                           description = i.description,
-                          created = "{{%d,%d,%d},{%d,%d,%d}}" % (created.year,created.month,created.day,
-                                                                 created.hour,created.minute,created.second),
+                          created = "{{%d,%d,%d},{%d,%d,%d}}" % (i.created.year,i.created.month,i.created.day,
+                                                                 i.created.hour,i.created.minute,i.created.second),
                           medium = i.medium,
                           ahash = i.ahash,
                           extension = i.extension)
