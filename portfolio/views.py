@@ -113,7 +113,7 @@ def add_image(request):
                         ("t","upload"),
                         MultipartParam(name='image',fileobj=request.FILES['image'],
                                        filename="image%s" % extension)))
-                req = urllib2.Request("http://apomixis.thraxil.org/", datagen, headers)
+                req = urllib2.Request("http://reticulum.thraxil.org/", datagen, headers)
                 metadata = loads(urllib2.urlopen(req).read())
                 img.ahash = metadata["hash"]
                 img.extension = extension

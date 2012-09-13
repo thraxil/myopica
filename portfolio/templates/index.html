@@ -6,7 +6,9 @@
 <div class="gallery">
 <div class="strip">{% for image in images %}
 <div class="thumb">
-<a href="{{image.get_absolute_url}}" title="{{image.title}}"><img src="http://apomixis.thraxil.org/image/{{image.ahash}}/100h/{{image.id}}{{image.extension}}"
+<a href="{{image.get_absolute_url}}"
+	 title="{{image.title}}"><img src="http://reticulum.thraxil.org/image/{{image.ahash}}/100h/{{image.id}}{{image.extension}}
+"
 			height="100" /></a>
 </div>{% endfor %}<div class="clear"/></div>
 </div></div>
@@ -21,7 +23,7 @@ All artwork is in the Public Domain. <a href="/books/">Books are available</a>.
 <div class="gthumb">
 
 
-<a href="{{gallery.get_absolute_url}}"><img src="http://apomixis.thraxil.org/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
+<a href="{{gallery.get_absolute_url}}"><img src="http://reticulum.thraxil.org/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
 <h3><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></h3>
 </div>
 
