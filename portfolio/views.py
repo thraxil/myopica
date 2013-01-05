@@ -4,11 +4,9 @@ from models import Gallery, Image, GalleryImage
 from django.contrib.auth.decorators import login_required
 from forms import AddImageForm
 from django.template.defaultfilters import slugify
-import urllib2
-from poster.encode import multipart_encode, MultipartParam
-from poster.streaminghttp import register_openers
 from simplejson import loads
 import os
+import requests
 
 
 def index(request):
@@ -129,16 +127,13 @@ def add_image(request):
                     extension = ".jpg"
                 if extension not in [".jpg", ".png", ".gif"]:
                     return HttpResponse("unsupported image format")
-                register_openers()
-                datagen, headers = multipart_encode((
-                        ("t", "upload"),
-                        MultipartParam(
-                            name='image', fileobj=request.FILES['image'],
-                            filename="image%s" % extension)))
-                req = urllib2.Request("http://reticulum.thraxil.org/",
-                                      datagen, headers)
-                metadata = loads(urllib2.urlopen(req).read())
-                img.ahash = metadata["hash"]
+
+                files = {'image':
+                         ("image%s" % extension,
+                          request.FILES['image'])
+                         }
+                r = requests.post("http://reticulum.thraxil.org/", files=files)
+                img.ahash = loads(r.text)["hash"]
                 img.extension = extension
 
             img.save()
