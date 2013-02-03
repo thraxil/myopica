@@ -1,6 +1,7 @@
-from django.contrib.syndication.feeds import Feed
-from models import Gallery,Image,GalleryImage
+from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
+from django.contrib.syndication.views import FeedDoesNotExist
+from models import Gallery,Image,GalleryImage
 
 
 class MainFeed(Feed):
@@ -11,8 +12,6 @@ class MainFeed(Feed):
     
     def items(self):
         return Image.objects.order_by('-created')[:5]
-
-from django.contrib.syndication.feeds import FeedDoesNotExist
 
 class GalleryFeed(Feed):
     feed_type = Atom1Feed
