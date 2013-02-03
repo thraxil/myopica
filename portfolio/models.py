@@ -29,8 +29,8 @@ class Image(models.Model):
 
     def add_to_gallery(self, gallery):
         if GalleryImage.objects.filter(
-            image=self,
-            gallery=gallery).count() > 0:
+                image=self,
+                gallery=gallery).count() > 0:
             return
         GalleryImage.objects.create(
             image=self, gallery=gallery,
@@ -133,9 +133,9 @@ class GalleryImage(models.Model):
         r = GalleryImage.objects.filter(
             gallery=self.gallery,
             ordinality__gte=self.ordinality
-            ).exclude(
+        ).exclude(
             image=self.image
-            ).order_by("ordinality", "image")
+        ).order_by("ordinality", "image")
         if r.count():
             return r[0]
         else:
@@ -145,9 +145,9 @@ class GalleryImage(models.Model):
         r = GalleryImage.objects.filter(
             gallery=self.gallery,
             ordinality__lte=self.ordinality
-            ).exclude(
+        ).exclude(
             image=self.image
-            ).order_by("-ordinality", "-image")
+        ).order_by("-ordinality", "-image")
         if r.count():
             return r[0]
         else:
