@@ -61,6 +61,15 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.markup',
     'south',
+    'django_nose',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
+SOUTH_TESTS_MIGRATE = False
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=myopica',
+]
+
