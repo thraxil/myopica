@@ -1,4 +1,5 @@
 # Django settings for myopica project.
+import sys
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,6 +16,10 @@ DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+
+if 'test' in sys.argv:
+    DATABASE_ENGINE = 'sqlite3'
+    DATABASE_NAME = ":memory:"
 
 TIME_ZONE = 'America/New_York'
 LANGUAGE_CODE = 'en-us'
