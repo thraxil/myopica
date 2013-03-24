@@ -2,18 +2,13 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-from myopica.portfolio.feeds import MainFeed, GalleryFeed
-
-feeds = {
-    'main': MainFeed,
-    'gallery' : GalleryFeed,
-    }
+from myopica.portfolio.feeds import MainFeed
 
 urlpatterns = patterns('',
                        (r'^$', 'myopica.portfolio.views.index'),
                        (r'^stream/$','myopica.portfolio.views.stream'),
                        (r'^scroll/(?P<id>\d+)/$','myopica.portfolio.views.scroll'),
-                       (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+                       (r'^feeds/(?P<url>.*)/$', MainFeed()),
                        (r'^admin/', include(admin.site.urls)),
                        (r'^accounts/login/$', 'django.contrib.auth.views.login'),
                        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/anders/code/python/myopica/media/'}),
