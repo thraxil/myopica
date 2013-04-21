@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'south',
     'django_nose',
+    'django.contrib.sitemaps',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
