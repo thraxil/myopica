@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load markup %}
+{% block title %}{{image.title}}{% endblock %}
 {% block bodyclass %}index{% endblock %}
 {% block nav %}<div id="subnav">{% if gi.prev_image %}<a href="{{ gi.prev_image.get_absolute_url }}">&lt;&lt; prev</a>{% endif %}
 <b><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></b>

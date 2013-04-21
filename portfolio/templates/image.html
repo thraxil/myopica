@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load markup %}
+{% block title %}{{image.title}}{% endblock %}
 {% block bodyclass %}index{% endblock %}
 {% block nav %}<div id="subnav">{% if image.prev_image %}<a href="{{ image.prev_image.get_absolute_url }}">&lt;&lt; newer</a>{% endif %}
 <b>[by date]</b>
