@@ -54,6 +54,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -79,6 +81,7 @@ INSTALLED_APPS = (
     'south',
     'django_nose',
     'django.contrib.sitemaps',
+    'django_statsd',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
@@ -92,3 +95,9 @@ NOSE_ARGS = [
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True
+
+STATSD_CLIENT = 'statsd.client'
+STATSD_PREFIX = 'myopica'
+STATSD_HOST = '127.0.0.1'
+STATSD_PORT = 8125
+STATSD_PATCHES = ['django_statsd.patches.db', ]
