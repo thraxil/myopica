@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django.contrib.sitemaps',
     'django_statsd',
+    'gunicorn',
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
