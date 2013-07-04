@@ -8,14 +8,29 @@
 {% endblock %}
 {% block content %}
 
+<div itemscope itemtype="http://schema.org/Painting">
 
 <img src="http://reticulum.thraxil.org/image/{{image.ahash}}/960w960h/{{image.id}}{{image.extension}}" 
 alt="{{image.title}}"
+itemprop="image"
 />
 
-<h2>{{image.title}}</h2>
-{% if image.description %}{{image.description|markdown}}{% endif %}
+<h2 itemprop="name">{{image.title}}</h2>
+{% if image.description %}
+<span itemprop="description">
+{{image.description|markdown}}
+</span>
+{% endif %}
 {% if image.medium %}<b>medium:</b> {{ image.medium }}{% endif %}
+
+<span class="invisible" itemprop="creator" itemscope
+      itemtype="http://schema.org/Person">
+  <span itemprop="name">
+    Anders Pearson
+  </span>
+</span>
+
+
 
 {% if gi.has_other_galleries %}
 <div>
@@ -28,5 +43,5 @@ alt="{{image.title}}"
 </div>
 {% endif %}
 
-
+</div>
 {% endblock %}
