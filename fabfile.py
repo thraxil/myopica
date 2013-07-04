@@ -13,4 +13,5 @@ def deploy():
     with cd(code_dir):
         run("git pull origin master")
         run("./bootstrap.py")
+        run("./manage.py migrate")
     restart_gunicorn()
