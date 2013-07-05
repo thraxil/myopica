@@ -3,7 +3,6 @@ requirements/src/resolver-0.2.1.tar.gz
 requirements/src/selector-0.8.11.tar.gz
 requirements/src/httplib2-0.7.7.tar.gz
 requirements/src/Markdown-2.0.tar.gz
-requirements/src/pyenchant-1.5.1.tar.gz
 requirements/src/simplejson-2.0.9.tar.gz
 requirements/src/uuid-1.30.tar.gz
 requirements/src/flickrapi-1.4.2.tar.gz
