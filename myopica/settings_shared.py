@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'myopica.urls'
 
 TEMPLATE_DIRS = (
-    "/home/anders/code/python/myopica/portfolio/templates/"
+    "/home/anders/code/python/myopica/portfolio/templates/",
 )
 
 INSTALLED_APPS = (
@@ -102,3 +102,10 @@ STATSD_PREFIX = 'myopica'
 STATSD_HOST = '127.0.0.1'
 STATSD_PORT = 8125
 STATSD_PATCHES = ['django_statsd.patches.db', ]
+
+ALLOWED_HOSTS = ['.localhost', 'myopica.org']
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+}
