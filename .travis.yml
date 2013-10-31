@@ -4,5 +4,5 @@ python:
 install:
   - ./bootstrap.py
 script:
-  - ./ve/bin/flake8 portfolio
+  - ./ve/bin/flake8 myopica
   - ./manage.py test

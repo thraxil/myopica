@@ -18,7 +18,7 @@ DATABASES = {
         'PORT': 5432,
         'USER': '',
         'PASSWORD': '',
-        }
+    }
 }
 
 if 'test' in sys.argv:
@@ -48,9 +48,9 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-     'django.contrib.auth.context_processors.auth',
-     'django.core.context_processors.debug',
-     'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = (
