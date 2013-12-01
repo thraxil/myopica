@@ -40,7 +40,7 @@ urlpatterns = patterns(
     (r'^image/(?P<slug>[^/]+)/sets/$',
      'myopica.portfolio.views.image_sets'),
     (r'^add_image/$', 'myopica.portfolio.views.add_image'),
-    (r'^(?P<slug>[^/]+)/$', 'myopica.portfolio.views.gallery'),
+    (r'^(?P<slug>[^/]+)/$', views.GalleryView.as_view()),
     (r'^(?P<slug>[^/]+)/reorder/$',
      'myopica.portfolio.views.reorder_gallery'),
     (r'^(?P<gallery_slug>[^/]+)/(?P<image_slug>[^/]+)/$',

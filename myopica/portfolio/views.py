@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from models import Gallery, Image, GalleryImage
 from django.contrib.auth.decorators import login_required
 from forms import AddImageForm
@@ -34,10 +35,10 @@ class ScrollView(TemplateView):
             dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
 
 
-def gallery(request, slug):
-    gallery = get_object_or_404(Gallery, slug=slug)
-    return render(request, "gallery.html",
-                  dict(gallery=gallery))
+class GalleryView(DetailView):
+    model = Gallery
+    template_name = "gallery.html"
+    context_object_name = "gallery"
 
 
 def reorder_gallery(request, slug):
