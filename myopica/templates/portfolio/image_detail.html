@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load markup %}
+{% block title %}{{object.title}}{% endblock %}
+{% block bodyclass %}index{% endblock %}
+{% block nav %}<div id="subnav">{% if object.prev_image %}<a href="{{ object.prev_image.get_absolute_url }}">&lt;&lt; newer</a>{% endif %}
+<b>[by date]</b>
+{% if object.next_image %}<a href="{{object.next_image.get_absolute_url}}">older &gt;&gt;</a>{% endif %}</div>
+{% endblock %}
+{% block content %}
+
+<div itemscope itemtype="http://schema.org/Painting">
+
+<img src="http://reticulum.thraxil.org/image/{{object.ahash}}/960w/{{object.id}}{{object.extension}}" 
+alt="{{object.title}}"
+itemprop="image"
+/>
+
+<h2 itemprop="name">{{object.title}}</h2>
+
+{% if object.description %}
+<span itemprop="description">{{object.description|markdown}}</span>
+{% endif %}
+{% if object.medium %}
+<b>medium:</b> {{ object.medium }}
+{% endif %}
+
+<span class="invisible" itemprop="creator" itemscope
+			itemtype="http://schema.org/Person">
+  <span itemprop="name">
+		Anders Pearson
+	</span>
+</span>
+
+<time class="invisible" datetime="{{object.created|date:'c'}}" itemprop="datePublished">{{object.created}}</time>
+
+{% if object.galleryimage_set.all.count %}
+<br /><b>Galleries:</b>
+<ul>
+{% for gallery in object.galleryimage_set.all %}
+<li><a href="{{ gallery.gallery.get_absolute_url }}">{{ gallery.gallery.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</div>
+{% endblock %}

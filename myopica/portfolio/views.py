@@ -82,8 +82,6 @@ class GalleryImageView(TemplateView):
 
 class ImageView(DetailView):
     model = Image
-    template_name = "image.html"
-    context_object_name = "image"
 
 
 class ImageSetsView(LoggedInMixin, View):
