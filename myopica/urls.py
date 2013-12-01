@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
+from django.views.generic.detail import DetailView
 from myopica.portfolio import views
 
 admin.autodiscover()
@@ -36,10 +37,10 @@ urlpatterns = patterns(
     (r'^uploads/(?P<path>.*)$',
      'django.views.static.serve',
      {'document_root': '/var/tmp/myopica/media/'}),
-    (r'^image/(?P<slug>[^/]+)/$', views.ImageView.as_view()),
+    (r'^image/(?P<slug>[^/]+)/$', DetailView.as_view(model=Image)),
     (r'^image/(?P<slug>[^/]+)/sets/$', views.ImageSetsView.as_view()),
     (r'^add_image/$', views.AddImageView.as_view()),
-    (r'^(?P<slug>[^/]+)/$', views.GalleryView.as_view()),
+    (r'^(?P<slug>[^/]+)/$', DetailView.as_view(model=Gallery)),
     (r'^(?P<slug>[^/]+)/reorder/$',
      views.ReorderGalleryView.as_view()),
     (r'^(?P<gallery_slug>[^/]+)/(?P<image_slug>[^/]+)/$',

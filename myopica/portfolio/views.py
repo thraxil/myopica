@@ -5,7 +5,6 @@ from django.template.defaultfilters import slugify
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.base import View
-from django.views.generic.detail import DetailView
 from models import Gallery, Image, GalleryImage
 from forms import AddImageForm
 from simplejson import loads
@@ -43,10 +42,6 @@ class ScrollView(TemplateView):
             dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
 
 
-class GalleryView(DetailView):
-    model = Gallery
-
-
 class ReorderGalleryView(LoggedInMixin, View):
     template_name = "reorder_gallery.html"
 
@@ -78,10 +73,6 @@ class GalleryImageView(TemplateView):
         return dict(gallery=gallery,
                     image=image,
                     gi=gi)
-
-
-class ImageView(DetailView):
-    model = Image
 
 
 class ImageSetsView(LoggedInMixin, View):
