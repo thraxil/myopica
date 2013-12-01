@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from models import Gallery, Image, GalleryImage
 from django.contrib.auth.decorators import login_required
 from forms import AddImageForm
@@ -12,33 +12,35 @@ import requests
 def index(request):
     images = Image.objects.all().order_by("-created")[:15]
     galleries = Gallery.objects.all().order_by("ordinality")
-    return render_to_response("index.html",
-                              dict(images=images, galleries=galleries))
+    return render(request, "index.html",
+                  dict(images=images, galleries=galleries))
 
 
 def stream(request):
-    return render_to_response(
+    return render(
+        request,
         "stream.html",
         dict(images=Image.objects.all().order_by("-id")[:15]))
 
 
 def scroll(request, id):
-    return render_to_response(
+    return render(
+        request,
         "scroll.html",
         dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
 
 
 def gallery(request, slug):
     gallery = get_object_or_404(Gallery, slug=slug)
-    return render_to_response("gallery.html",
-                              dict(gallery=gallery))
+    return render(request, "gallery.html",
+                  dict(gallery=gallery))
 
 
 def reorder_gallery(request, slug):
     gallery = get_object_or_404(Gallery, slug=slug)
     if request.method == "GET":
-        return render_to_response("reorder_gallery.html",
-                                  dict(gallery=gallery))
+        return render(request, "reorder_gallery.html",
+                      dict(gallery=gallery))
     else:
         for k in request.POST.keys():
             if not k.startswith('image-'):
@@ -55,7 +57,8 @@ def gallery_image(request, gallery_slug, image_slug):
     gallery = get_object_or_404(Gallery, slug=gallery_slug)
     image = get_object_or_404(Image, slug=image_slug)
     gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
-    return render_to_response(
+    return render(
+        request,
         "gallery_image.html",
         dict(gallery=gallery,
              image=image,
@@ -64,7 +67,7 @@ def gallery_image(request, gallery_slug, image_slug):
 
 def image(request, slug):
     image = get_object_or_404(Image, slug=slug)
-    return render_to_response("image.html", dict(image=image))
+    return render(request, "image.html", dict(image=image))
 
 
 def image_sets(request, slug, gallery_slug=None):
@@ -108,8 +111,8 @@ def image_sets(request, slug, gallery_slug=None):
             image_in = g.has_image(image)
             gdata.append(dict(image_in=image_in, gallery=g))
 
-        return render_to_response("image_sets.html",
-                                  dict(image=image, galleries=gdata))
+        return render(request, "image_sets.html",
+                      dict(image=image, galleries=gdata))
 
 
 @login_required
@@ -146,11 +149,11 @@ def add_image(request):
         else:
             print "not valid"
             galleries = Gallery.objects.all()
-            return render_to_response("add_image.html",
-                                      dict(galleries=galleries,
-                                           form=form))
+            return render(request, "add_image.html",
+                          dict(galleries=galleries,
+                               form=form))
     else:
         galleries = Gallery.objects.all()
-        return render_to_response("add_image.html",
-                                  dict(galleries=galleries,
-                                       form=AddImageForm()))
+        return render(request, "add_image.html",
+                      dict(galleries=galleries,
+                           form=AddImageForm()))

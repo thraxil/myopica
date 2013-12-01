@@ -90,7 +90,6 @@ INSTALLED_APPS = (
 )
 
 STATIC_URL = '/media/'
-STATIC_URL = "/media/"
 STATICFILES_DIRS = (
     os.path.abspath(os.path.join(os.path.dirname(__file__), "../media/")),
 )
