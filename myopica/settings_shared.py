@@ -68,7 +68,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'myopica.urls'
 
 TEMPLATE_DIRS = (
-    "/home/anders/code/python/myopica/portfolio/templates/",
     "/home/anders/code/python/myopica/myopica/templates/",
 )
 

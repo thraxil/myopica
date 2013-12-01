@@ -19,7 +19,7 @@ class LoggedInMixin(object):
 
 
 class IndexView(TemplateView):
-    template_name = "index.html"
+    template_name = "portfolio/index.html"
 
     def get_context_data(self):
         images = Image.objects.all().order_by("-created")[:15]
@@ -28,7 +28,7 @@ class IndexView(TemplateView):
 
 
 class ReorderGalleryView(LoggedInMixin, View):
-    template_name = "reorder_gallery.html"
+    template_name = "portfolio/reorder_gallery.html"
 
     def get(self, request, slug):
         gallery = get_object_or_404(Gallery, slug=slug)
@@ -49,7 +49,7 @@ class ReorderGalleryView(LoggedInMixin, View):
 
 
 class GalleryImageView(TemplateView):
-    template_name = "gallery_image.html"
+    template_name = "portfolio/gallery_image.html"
 
     def get_context_data(self, gallery_slug, image_slug):
         gallery = get_object_or_404(Gallery, slug=gallery_slug)
@@ -61,7 +61,7 @@ class GalleryImageView(TemplateView):
 
 
 class ImageSetsView(LoggedInMixin, View):
-    template_name = "image_sets.html"
+    template_name = "portfolio/image_sets.html"
 
     def get(self, request, slug, gallery_slug=None):
         image = get_object_or_404(Image, slug=slug)
@@ -109,7 +109,7 @@ class ImageSetsView(LoggedInMixin, View):
 
 
 class AddImageView(LoggedInMixin, View):
-    template_name = "add_image.html"
+    template_name = "portfolio/add_image.html"
 
     def get(self, request):
         galleries = Gallery.objects.all()
