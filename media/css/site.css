@@ -100,7 +100,7 @@ ul#nav a:hover {
 .clear { clear: both; background: none; }
 
 #faux {
-/* background: url(/site_media/images/faux-bg.png) top right repeat-y; */
+/* background: url({{STATIC_URL}}images/faux-bg.png) top right repeat-y; */
  margin-bottom: 0px;
  overflow: auto; 
  width: 100%
