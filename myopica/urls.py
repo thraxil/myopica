@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
+from myopica.portfolio import views
 
 admin.autodiscover()
 
@@ -23,7 +24,7 @@ sitemaps = {
 
 urlpatterns = patterns(
     '',
-    (r'^$', 'myopica.portfolio.views.index'),
+    (r'^$', views.IndexView.as_view()),
     (r'^stream/$', 'myopica.portfolio.views.stream'),
     (r'^scroll/(?P<id>\d+)/$', 'myopica.portfolio.views.scroll'),
     (r'^feeds/(?P<url>.*)/$', MainFeed()),

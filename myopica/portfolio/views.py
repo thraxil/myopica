@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.views.generic.base import TemplateView
 from models import Gallery, Image, GalleryImage
 from django.contrib.auth.decorators import login_required
 from forms import AddImageForm
@@ -9,11 +10,12 @@ import os
 import requests
 
 
-def index(request):
-    images = Image.objects.all().order_by("-created")[:15]
-    galleries = Gallery.objects.all().order_by("ordinality")
-    return render(request, "index.html",
-                  dict(images=images, galleries=galleries))
+class IndexView(TemplateView):
+    template_name = "index.html"
+    def get_context_data(self):
+        images = Image.objects.all().order_by("-created")[:15]
+        galleries = Gallery.objects.all().order_by("ordinality")
+        return dict(images=images, galleries=galleries)
 
 
 def stream(request):
