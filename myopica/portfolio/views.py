@@ -27,21 +27,6 @@ class IndexView(TemplateView):
         return dict(images=images, galleries=galleries)
 
 
-class StreamView(TemplateView):
-    template_name = "stream.html"
-
-    def get_context_data(self):
-        return dict(images=Image.objects.all().order_by("-id")[:15])
-
-
-class ScrollView(TemplateView):
-    template_name = "scroll.html"
-
-    def get_context_data(self, id):
-        return(
-            dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
-
-
 class ReorderGalleryView(LoggedInMixin, View):
     template_name = "reorder_gallery.html"
 
