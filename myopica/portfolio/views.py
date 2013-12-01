@@ -1,15 +1,22 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.template.defaultfilters import slugify
+from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from models import Gallery, Image, GalleryImage
-from django.contrib.auth.decorators import login_required
 from forms import AddImageForm
-from django.template.defaultfilters import slugify
 from simplejson import loads
 import os
 import requests
+
+
+class LoggedInMixin(object):
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LoggedInMixin, self).dispatch(*args, **kwargs)
 
 
 class IndexView(TemplateView):
@@ -42,7 +49,7 @@ class GalleryView(DetailView):
     context_object_name = "gallery"
 
 
-class ReorderGalleryView(View):
+class ReorderGalleryView(LoggedInMixin, View):
     template_name = "reorder_gallery.html"
 
     def get(self, request, slug):
@@ -81,7 +88,7 @@ class ImageView(DetailView):
     context_object_name = "image"
 
 
-class ImageSetsView(View):
+class ImageSetsView(LoggedInMixin, View):
     template_name = "image_sets.html"
 
     def get(self, request, slug, gallery_slug=None):
@@ -138,9 +145,15 @@ class ImageSetsView(View):
                 next_image.get_absolute_url() + "sets/")
 
 
-@login_required
-def add_image(request):
-    if request.method == "POST":
+class AddImageView(LoggedInMixin, View):
+    template_name = "add_image.html"
+    def get(self, request):
+        galleries = Gallery.objects.all()
+        return render(request, self.template_name,
+                      dict(galleries=galleries,
+                           form=AddImageForm()))
+
+    def post(self, request):
         if request.POST.get("slug", "") == "":
             request.POST['slug'] = slugify(request.POST.get("title"))
         form = AddImageForm(request.POST, request.FILES)
@@ -170,13 +183,7 @@ def add_image(request):
 
             return HttpResponseRedirect(img.get_absolute_url())
         else:
-            print "not valid"
             galleries = Gallery.objects.all()
-            return render(request, "add_image.html",
+            return render(request, self.template_name,
                           dict(galleries=galleries,
                                form=form))
-    else:
-        galleries = Gallery.objects.all()
-        return render(request, "add_image.html",
-                      dict(galleries=galleries,
-                           form=AddImageForm()))

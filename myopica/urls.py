@@ -38,7 +38,7 @@ urlpatterns = patterns(
      {'document_root': '/var/tmp/myopica/media/'}),
     (r'^image/(?P<slug>[^/]+)/$', views.ImageView.as_view()),
     (r'^image/(?P<slug>[^/]+)/sets/$', views.ImageSetsView.as_view()),
-    (r'^add_image/$', 'myopica.portfolio.views.add_image'),
+    (r'^add_image/$', views.AddImageView.as_view()),
     (r'^(?P<slug>[^/]+)/$', views.GalleryView.as_view()),
     (r'^(?P<slug>[^/]+)/reorder/$',
      views.ReorderGalleryView.as_view()),
