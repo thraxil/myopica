@@ -45,8 +45,6 @@ class ScrollView(TemplateView):
 
 class GalleryView(DetailView):
     model = Gallery
-    template_name = "gallery.html"
-    context_object_name = "gallery"
 
 
 class ReorderGalleryView(LoggedInMixin, View):

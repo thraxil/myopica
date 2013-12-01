@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load markup %}
+{% block title %}Gallery: {{object.title}}{% endblock %}
+{% block feeds %}
+<link href="/feeds/gallery/{{ object.slug }}/" type="application/atom+xml" rel="alternate"
+      title="Atom feed of all new images in {{ object.title }}" />
+{% endblock %}
+{% block bodyclass %}index{% endblock %}
+{% block content %}
+
+<h3>Gallery: {{object.title}}</h3>
+{% if object.description %}{{object.description|markdown}}{% endif %}
+
+{% for image in object.all_images %}
+<div class="thumb">
+<a href="{{object.get_absolute_url}}{{image.slug}}/" title="{{image.title}}"><img src="http://reticulum.thraxil.org/image/{{image.ahash}}/100s/{{image.id}}{{image.extension}}"
+			height="100" width="100"/></a>
+</div>{% endfor %}<div class="clear"/></div>
+
+
+{% endblock %}
