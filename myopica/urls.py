@@ -25,8 +25,8 @@ sitemaps = {
 urlpatterns = patterns(
     '',
     (r'^$', views.IndexView.as_view()),
-    (r'^stream/$', 'myopica.portfolio.views.stream'),
-    (r'^scroll/(?P<id>\d+)/$', 'myopica.portfolio.views.scroll'),
+    (r'^stream/$', views.StreamView.as_view()),
+    (r'^scroll/(?P<id>\d+)/$', views.ScrollView.as_view()),
     (r'^feeds/(?P<url>.*)/$', MainFeed()),
     (r'^admin/', include(admin.site.urls)),
     (r'^sitemap\.xml$',

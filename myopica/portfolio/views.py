@@ -12,24 +12,26 @@ import requests
 
 class IndexView(TemplateView):
     template_name = "index.html"
+
     def get_context_data(self):
         images = Image.objects.all().order_by("-created")[:15]
         galleries = Gallery.objects.all().order_by("ordinality")
         return dict(images=images, galleries=galleries)
 
 
-def stream(request):
-    return render(
-        request,
-        "stream.html",
-        dict(images=Image.objects.all().order_by("-id")[:15]))
+class StreamView(TemplateView):
+    template_name = "stream.html"
+
+    def get_context_data(self):
+        return dict(images=Image.objects.all().order_by("-id")[:15])
 
 
-def scroll(request, id):
-    return render(
-        request,
-        "scroll.html",
-        dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
+class ScrollView(TemplateView):
+    template_name = "scroll.html"
+
+    def get_context_data(self, id):
+        return(
+            dict(images=Image.objects.filter(id__lt=id).order_by("-id")[:15]))
 
 
 def gallery(request, slug):
