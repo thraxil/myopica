@@ -94,13 +94,6 @@ class ImageSetsView(LoggedInMixin, View):
     def get(self, request, slug, gallery_slug=None):
         image = get_object_or_404(Image, slug=slug)
         galleries = Gallery.objects.all()
-        gallery = None
-        gi = None
-        next_image = None
-        if gallery_slug is not None:
-            gallery = get_object_or_404(Gallery, slug=gallery_slug)
-            gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
-            next_image = gi.next_image()
         gdata = []
         for g in galleries:
             image_in = g.has_image(image)
@@ -111,7 +104,6 @@ class ImageSetsView(LoggedInMixin, View):
 
     def post(self, request, slug, gallery_slug=None):
         image = get_object_or_404(Image, slug=slug)
-        galleries = Gallery.objects.all()
         gallery = None
         gi = None
         next_image = None
@@ -119,7 +111,6 @@ class ImageSetsView(LoggedInMixin, View):
             gallery = get_object_or_404(Gallery, slug=gallery_slug)
             gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
             next_image = gi.next_image()
-        gdata = []
         image_galleries = [gi.gallery for gi in image.galleryimage_set.all()]
         post_galleries = [get_object_or_404(Gallery, id=key[len("gallery_"):])
                           for key in request.POST.keys()
@@ -147,6 +138,7 @@ class ImageSetsView(LoggedInMixin, View):
 
 class AddImageView(LoggedInMixin, View):
     template_name = "add_image.html"
+
     def get(self, request):
         galleries = Gallery.objects.all()
         return render(request, self.template_name,
