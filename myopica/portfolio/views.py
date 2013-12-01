@@ -75,9 +75,10 @@ class GalleryImageView(TemplateView):
                     gi=gi)
 
 
-def image(request, slug):
-    image = get_object_or_404(Image, slug=slug)
-    return render(request, "image.html", dict(image=image))
+class ImageView(DetailView):
+    model = Image
+    template_name = "image.html"
+    context_object_name = "image"
 
 
 def image_sets(request, slug, gallery_slug=None):
