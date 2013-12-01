@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import TemplateView
+from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from models import Gallery, Image, GalleryImage
 from django.contrib.auth.decorators import login_required
@@ -41,12 +42,16 @@ class GalleryView(DetailView):
     context_object_name = "gallery"
 
 
-def reorder_gallery(request, slug):
-    gallery = get_object_or_404(Gallery, slug=slug)
-    if request.method == "GET":
-        return render(request, "reorder_gallery.html",
+class ReorderGalleryView(View):
+    template_name = "reorder_gallery.html"
+
+    def get(self, request, slug):
+        gallery = get_object_or_404(Gallery, slug=slug)
+        return render(request, self.template_name,
                       dict(gallery=gallery))
-    else:
+
+    def post(self, request, slug):
+        gallery = get_object_or_404(Gallery, slug=slug)
         for k in request.POST.keys():
             if not k.startswith('image-'):
                 continue
