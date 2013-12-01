@@ -81,17 +81,38 @@ class ImageView(DetailView):
     context_object_name = "image"
 
 
-def image_sets(request, slug, gallery_slug=None):
-    image = get_object_or_404(Image, slug=slug)
-    galleries = Gallery.objects.all()
-    gallery = None
-    gi = None
-    next_image = None
-    if gallery_slug is not None:
-        gallery = get_object_or_404(Gallery, slug=gallery_slug)
-        gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
-        next_image = gi.next_image()
-    if request.method == "POST":
+class ImageSetsView(View):
+    template_name = "image_sets.html"
+
+    def get(self, request, slug, gallery_slug=None):
+        image = get_object_or_404(Image, slug=slug)
+        galleries = Gallery.objects.all()
+        gallery = None
+        gi = None
+        next_image = None
+        if gallery_slug is not None:
+            gallery = get_object_or_404(Gallery, slug=gallery_slug)
+            gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
+            next_image = gi.next_image()
+        gdata = []
+        for g in galleries:
+            image_in = g.has_image(image)
+            gdata.append(dict(image_in=image_in, gallery=g))
+
+        return render(request, self.template_name,
+                      dict(image=image, galleries=gdata))
+
+    def post(self, request, slug, gallery_slug=None):
+        image = get_object_or_404(Image, slug=slug)
+        galleries = Gallery.objects.all()
+        gallery = None
+        gi = None
+        next_image = None
+        if gallery_slug is not None:
+            gallery = get_object_or_404(Gallery, slug=gallery_slug)
+            gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
+            next_image = gi.next_image()
+        gdata = []
         image_galleries = [gi.gallery for gi in image.galleryimage_set.all()]
         post_galleries = [get_object_or_404(Gallery, id=key[len("gallery_"):])
                           for key in request.POST.keys()
@@ -115,15 +136,6 @@ def image_sets(request, slug, gallery_slug=None):
                 next_image = image.next_image()
             return HttpResponseRedirect(
                 next_image.get_absolute_url() + "sets/")
-
-    else:
-        gdata = []
-        for g in galleries:
-            image_in = g.has_image(image)
-            gdata.append(dict(image_in=image_in, gallery=g))
-
-        return render(request, "image_sets.html",
-                      dict(image=image, galleries=gdata))
 
 
 @login_required

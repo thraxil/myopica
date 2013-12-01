@@ -37,8 +37,7 @@ urlpatterns = patterns(
      'django.views.static.serve',
      {'document_root': '/var/tmp/myopica/media/'}),
     (r'^image/(?P<slug>[^/]+)/$', views.ImageView.as_view()),
-    (r'^image/(?P<slug>[^/]+)/sets/$',
-     'myopica.portfolio.views.image_sets'),
+    (r'^image/(?P<slug>[^/]+)/sets/$', views.ImageSetsView.as_view()),
     (r'^add_image/$', 'myopica.portfolio.views.add_image'),
     (r'^(?P<slug>[^/]+)/$', views.GalleryView.as_view()),
     (r'^(?P<slug>[^/]+)/reorder/$',
@@ -46,5 +45,5 @@ urlpatterns = patterns(
     (r'^(?P<gallery_slug>[^/]+)/(?P<image_slug>[^/]+)/$',
      views.GalleryImageView.as_view()),
     (r'^(?P<gallery_slug>[^/]+)/(?P<slug>[^/]+)/sets/$',
-     'myopica.portfolio.views.image_sets'),
+     views.ImageSetsView.as_view()),
 )
