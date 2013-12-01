@@ -44,7 +44,7 @@ urlpatterns = patterns(
     (r'^(?P<slug>[^/]+)/reorder/$',
      views.ReorderGalleryView.as_view()),
     (r'^(?P<gallery_slug>[^/]+)/(?P<image_slug>[^/]+)/$',
-     'myopica.portfolio.views.gallery_image'),
+     views.GalleryImageView.as_view()),
     (r'^(?P<gallery_slug>[^/]+)/(?P<slug>[^/]+)/sets/$',
      'myopica.portfolio.views.image_sets'),
 )

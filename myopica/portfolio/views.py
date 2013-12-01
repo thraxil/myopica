@@ -63,16 +63,16 @@ class ReorderGalleryView(View):
         return HttpResponse("POST")
 
 
-def gallery_image(request, gallery_slug, image_slug):
-    gallery = get_object_or_404(Gallery, slug=gallery_slug)
-    image = get_object_or_404(Image, slug=image_slug)
-    gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
-    return render(
-        request,
-        "gallery_image.html",
-        dict(gallery=gallery,
-             image=image,
-             gi=gi))
+class GalleryImageView(TemplateView):
+    template_name = "gallery_image.html"
+
+    def get_context_data(self, gallery_slug, image_slug):
+        gallery = get_object_or_404(Gallery, slug=gallery_slug)
+        image = get_object_or_404(Image, slug=image_slug)
+        gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
+        return dict(gallery=gallery,
+                    image=image,
+                    gi=gi)
 
 
 def image(request, slug):
