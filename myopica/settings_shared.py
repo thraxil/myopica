@@ -71,7 +71,7 @@ TEMPLATE_DIRS = (
     "/home/anders/code/python/myopica/myopica/templates/",
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'myopica.portfolio',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -87,7 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django_statsd',
     'gunicorn',
-)
+]
 
 STATIC_URL = '/media/'
 STATICFILES_DIRS = (

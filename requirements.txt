@@ -17,3 +17,4 @@ Fabric==1.6.1
 South==0.8.1
 django-nose==1.2
 django-statsd-mozilla==0.3.9
+raven==4.0.3
