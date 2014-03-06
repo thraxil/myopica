@@ -1,6 +1,6 @@
 from fabric.api import run, sudo, local, cd, env
 
-env.hosts = ['maru.thraxil.org']
+env.hosts = ['orlando.thraxil.org']
 nginx_hosts = ['lolrus.thraxil.org']
 env.forward_agent = True
 
