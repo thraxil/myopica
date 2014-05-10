@@ -1,4 +1,4 @@
-Django==1.5.4
+Django==1.6.4
 Markdown==2.3.1
 simplejson==3.3.0
 psycopg2==2.5.1
@@ -14,7 +14,8 @@ pycrypto==2.6
 paramiko==1.10.1
 Fabric==1.6.1
 
-South==0.8.1
+South==0.8.4
 django-nose==1.2
-django-statsd-mozilla==0.3.9
+django-statsd-mozilla==0.3.11
 raven==4.0.3
+django-markwhat==1.0
