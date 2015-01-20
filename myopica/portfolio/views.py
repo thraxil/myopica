@@ -83,7 +83,7 @@ class ImageSetsView(LoggedInMixin, View):
             gallery = get_object_or_404(Gallery, slug=gallery_slug)
             gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
             next_image = gi.next_image()
-        image_galleries = [gi.gallery for gi in image.galleryimage_set.all()]
+        image_galleries = [gii.gallery for gii in image.galleryimage_set.all()]
         post_galleries = [get_object_or_404(Gallery, id=key[len("gallery_"):])
                           for key in request.POST.keys()
                           if key.startswith('gallery_')]
