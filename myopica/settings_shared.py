@@ -81,7 +81,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
     'django_nose',
     'django.contrib.sitemaps',
     'django_statsd',
@@ -100,7 +99,6 @@ STATICFILES_FINDERS = (
 )
 
 THUMBNAIL_SUBDIR = "thumbs"
-SOUTH_TESTS_MIGRATE = False
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
