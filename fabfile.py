@@ -5,7 +5,7 @@ nginx_hosts = ['lolrus.thraxil.org']
 env.forward_agent = True
 
 def restart_gunicorn():
-    sudo("restart myopica")
+    sudo("restart myopica", shell=False)
 
 def prepare_deploy():
     local("./manage.py test")
