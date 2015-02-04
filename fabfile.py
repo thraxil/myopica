@@ -2,7 +2,6 @@ from fabric.api import run, sudo, local, cd, env
 
 env.hosts = ['orlando.thraxil.org']
 nginx_hosts = ['lolrus.thraxil.org']
-env.forward_agent = True
 
 def restart_gunicorn():
     sudo("restart myopica", shell=False)
