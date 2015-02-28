@@ -1,15 +1,18 @@
 # flake8: noqa
 from settings_shared import *
+import os.path
 
 TEMPLATE_DIRS = (
-    "/var/www/myopica/myopica/myopica/templates",
+    os.path.join(os.path.dirname(__file__), "templates"),
 )
-MEDIA_ROOT = '/var/www/myopica/media/'
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
 STATICFILES_DIRS = ()
-STATIC_ROOT = "/var/www/myopica/myopica/media/"
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
 
 if 'migrate' not in sys.argv:
     INSTALLED_APPS = INSTALLED_APPS + [

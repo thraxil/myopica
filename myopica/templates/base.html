@@ -1,9 +1,10 @@
+{% load compress %}
 <html>
 <head><title>myopica: {% block title %}{% endblock %}</title>
 
-<style media="screen" type="text/css">
-@import "{{STATIC_URL}}css/site.css" ;
-</style>
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/site.css" />
+{% endcompress %}
 
 {% block css %}{% endblock %}
 {% block js %}{% endblock %}
