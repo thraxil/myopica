@@ -3,6 +3,8 @@ python:
   - "2.7"
 before_install:
   - openssl aes-256-cbc -K $encrypted_de7cb9ba4438_key -iv $encrypted_de7cb9ba4438_iv -in myopica_rsa.enc -out myopica_rsa -d
+install:
+  - ./bootstrap.py
 script:
   - make flake8
   - make
