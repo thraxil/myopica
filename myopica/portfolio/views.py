@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.base import View
 from models import Gallery, Image, GalleryImage
 from forms import AddImageForm
-from simplejson import loads
+from json import loads
 import os
 import requests
 
