@@ -38,7 +38,7 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = False
 
-MEDIA_ROOT = '/var/tmp/myopica/media/'
+MEDIA_ROOT = '/var/tmp/myopica/uploads/'
 MEDIA_URL = '/uploads/'
 ADMIN_MEDIA_PREFIX = '/media/'
 SECRET_KEY = 'daod0^($fi6%pcy8(ihsj8$e0!&4@+=s8())redma#z9)v9d8*'
@@ -87,18 +87,21 @@ INSTALLED_APPS = [
     'django_markwhat',
     'gunicorn',
     'compressor',
+    'storages',
 ]
 
 STATIC_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.abspath(os.path.join(os.path.dirname(__file__), "../media/")),
 )
-STATIC_ROOT = "media/"
+STATIC_ROOT = "/tmp/myopica/static"
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+COMPRESS_URL = "/media/"
+COMPRESS_ROOT = "media/"
 
 THUMBNAIL_SUBDIR = "thumbs"
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
