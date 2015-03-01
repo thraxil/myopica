@@ -15,6 +15,7 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
 AWS_S3_CUSTOM_DOMAIN = "d3bk6m0iptukrc.cloudfront.net"
+AWS_IS_GZIPPED = True
 AWS_STORAGE_BUCKET_NAME = "thraxil-myopica-static-prod"
 AWS_PRELOAD_METADATA = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
