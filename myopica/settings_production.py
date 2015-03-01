@@ -26,7 +26,7 @@ COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 DEFAULT_FILE_STORAGE = 'cacheds3storage.MediaRootS3BotoStorage'
 MEDIA_URL = S3_URL + '/media/'
-COMPRESS_STORAGE = 'cacheds3storage.MediaRootS3BotoStorage'
+COMPRESS_STORAGE = 'cacheds3storage.CompressorS3BotoStorage'
 AWS_QUERYSTRING_AUTH = False
 
 

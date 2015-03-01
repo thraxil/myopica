@@ -103,6 +103,11 @@ STATICFILES_FINDERS = (
 COMPRESS_URL = "/media/"
 COMPRESS_ROOT = "media/"
 
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+
 THUMBNAIL_SUBDIR = "thumbs"
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
