@@ -6,7 +6,6 @@ before_install:
 install:
   - ./bootstrap.py
 script:
-  - make flake8
   - make
 after_success:
   - chmod 600 myopica_rsa
