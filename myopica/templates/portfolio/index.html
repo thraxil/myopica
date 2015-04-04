@@ -8,7 +8,7 @@
 <div class="strip">{% for image in images %}
 <div class="thumb">
 <a href="{{image.get_absolute_url}}"
-	 title="{{image.title}}"><img src="http://reticulum.thraxil.org/image/{{image.ahash}}/100h/{{image.id}}{{image.extension}}
+	 title="{{image.title}}"><img src="https://d2f33fmhbh7cs9.cloudfront.net/image/{{image.ahash}}/100h/{{image.id}}{{image.extension}}
 "
 			height="100" /></a>
 </div>{% endfor %}<div class="clear"/></div>
@@ -24,7 +24,7 @@ Please consider funding me on <a href="https://www.gittip.com/thraxil/">gittip</
 <div class="gthumb">
 
 
-<a href="{{gallery.get_absolute_url}}"><img src="http://reticulum.thraxil.org/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
+<a href="{{gallery.get_absolute_url}}"><img src="https://d2f33fmhbh7cs9.cloudfront.net/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
 <h3><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></h3>
 </div>
 
