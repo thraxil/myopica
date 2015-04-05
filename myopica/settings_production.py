@@ -6,7 +6,7 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
