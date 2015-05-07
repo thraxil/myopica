@@ -23,6 +23,30 @@ validate: ./ve/bin/python
 shell: ./ve/bin/python
 	$(MANAGE) shell_plus
 
+build:
+	docker build -t thraxil/myopica .
+
+deploy: flake8 test build
+	docker push thraxil/myopica
+	ssh arctic.thraxil.org docker pull thraxil/myopica
+	ssh arctic.thraxil.org sudo /sbin/restart myopica
+
+docker-pg:
+	docker run --name myopica-pg \
+	-e POSTGRES_PASSWORD=nothing \
+	-e POSTGRES_USER=postgres \
+	-d \
+	postgres
+
+docker-test: build
+	docker run -it -p 31000:8000 \
+	--link pg-myopica:postgresql \
+	-e DB_NAME=postgres \
+	-e SECRET_KEY=notreal \
+	-e DB_PASSWORD=nothing \
+	-e DB_USER=postgres \
+	thraxil/myopica
+
 clean:
 	rm -rf ve
 	rm -rf media/CACHE
@@ -50,12 +74,6 @@ collectstatic: ./ve/bin/python validate
 
 compress: ./ve/bin/python validate
 	$(MANAGE) compress --settings=$(APP).settings_production
-
-deploy: ./ve/bin/python validate test
-	./ve/bin/fab deploy
-
-travis_deploy: ./ve/bin/python validate test
-	./ve/bin/fab deploy -i myopica_rsa
 
 # run this one the very first time you check
 # this out on a new machine to set up dev
