@@ -26,13 +26,6 @@ shell: ./ve/bin/python
 build:
 	docker build -t thraxil/myopica .
 
-deploy: flake8 test build
-	docker push thraxil/myopica
-	ssh arctic.thraxil.org docker pull thraxil/myopica
-	ssh arctic.thraxil.org sudo /sbin/restart myopica
-	ssh cobra.thraxil.org docker pull thraxil/myopica
-	ssh cobra.thraxil.org sudo /sbin/restart myopica
-
 docker-pg:
 	docker run --name myopica-pg \
 	-e POSTGRES_PASSWORD=nothing \
