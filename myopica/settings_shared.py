@@ -81,7 +81,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_nose',
     'django.contrib.sitemaps',
     'django_statsd',
     'django_markwhat',
@@ -109,12 +108,7 @@ COMPRESS_CSS_FILTERS = [
 ]
 
 THUMBNAIL_SUBDIR = "thumbs"
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=myopica',
-]
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_HTTPONLY = True
