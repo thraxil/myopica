@@ -4,10 +4,10 @@ from django.contrib.sitemaps import GenericSitemap
 from django.views.generic.detail import DetailView
 from myopica.portfolio import views
 
-admin.autodiscover()
-
 from myopica.portfolio.feeds import MainFeed
 from myopica.portfolio.models import Gallery, Image
+
+admin.autodiscover()
 
 gallery_info_dict = {
     'queryset': Gallery.objects.all(),
