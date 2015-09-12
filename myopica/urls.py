@@ -32,6 +32,7 @@ urlpatterns = patterns(
      'django.contrib.sitemaps.views.sitemap',
      {'sitemaps': sitemaps}),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    (r'smoketest/', include('smoketest.urls')),
     (r'^uploads/(?P<path>.*)$',
      'django.views.static.serve',
      {'document_root': '/var/tmp/myopica/media/'}),

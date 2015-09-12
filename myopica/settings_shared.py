@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'compressor',
     'storages',
+    'smoketest',
 ]
 
 STATIC_URL = '/media/'
