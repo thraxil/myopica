@@ -7,3 +7,4 @@ local_settings.py
 distribute*.tar.gz
 .coverage
 CACHE
+wheelhouse

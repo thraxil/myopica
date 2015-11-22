@@ -1,6 +1,13 @@
+ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 MANAGE=./manage.py
 APP=myopica
 FLAKE8=./ve/bin/flake8
+
+ifeq ($(TAG), undefined)
+	IMAGE = thraxil/$(APP)
+else
+	IMAGE = thraxil/$(APP):$(TAG)
+endif
 
 test: ./ve/bin/python
 	$(MANAGE) test
@@ -78,3 +85,15 @@ install: ./ve/bin/python validate test
 	createdb $(APP)
 	$(MANAGE) syncdb --noinput
 	make migrate
+
+wheelhouse/requirements.txt: requirements.txt
+	mkdir -p wheelhouse
+	docker run --rm \
+	-v $(ROOT_DIR):/app \
+	-v $(ROOT_DIR)/wheelhouse:/wheelhouse \
+	ccnmtl/django.build
+	cp requirements.txt wheelhouse/requirements.txt
+	touch wheelhouse/requirements.txt
+
+build: wheelhouse/requirements.txt
+	docker build -t $(IMAGE) .
