@@ -22,10 +22,11 @@ Please consider funding me on <a href="https://www.gittip.com/thraxil/">gittip</
 {% for gallery in galleries %}
 
 <div class="gthumb">
+{% with first_image=gallery.first_image %}
 
-
-<a href="{{gallery.get_absolute_url}}"><img src="https://d2f33fmhbh7cs9.cloudfront.net/image/{{gallery.first_image.ahash}}/200s/{{gallery.first_image.id}}{{gallery.first_image.extension}}" width="200" height="200" alt="{{gallery.first_image.title}}"/></a>
+<a href="{{gallery.get_absolute_url}}"><img src="https://d2f33fmhbh7cs9.cloudfront.net/image/{{first_image.ahash}}/200s/{{first_image.id}}{{first_image.extension}}" width="200" height="200" alt="{{first_image.title}}"/></a>
 <h3><a href="{{gallery.get_absolute_url}}">{{ gallery.title }}</a></h3>
+{% endwith %}
 </div>
 
 
