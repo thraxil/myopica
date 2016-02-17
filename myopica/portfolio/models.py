@@ -93,7 +93,8 @@ class Gallery(models.Model):
                 in self.galleryimage_set.all().order_by("-ordinality")][:15]
 
     def first_image(self):
-        return self.galleryimage_set.all().order_by("-ordinality")[0].image
+        return self.galleryimage_set.all().order_by(
+            "-ordinality").first().image
 
     def newest_images(self):
         return [i.image
