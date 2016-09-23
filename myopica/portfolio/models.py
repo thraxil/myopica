@@ -58,7 +58,7 @@ class Image(models.Model):
 
 
 class ImageAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("title",)}
+    pass
 
 
 def count_galleries():
