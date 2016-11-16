@@ -33,4 +33,8 @@ INSTALLED_APPS += [  # noqa
     'django.contrib.sitemaps',
 ]
 
+MIDDLEWARE_CLASSES += [ # noqa
+    'django.contrib.messages.middleware.MessageMiddleware',
+]
+
 ALLOWED_HOSTS += ['myopica.org']  # noqa
