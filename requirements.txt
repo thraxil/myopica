@@ -16,7 +16,7 @@ six==1.10.0
 boto==2.45.0
 python-dateutil==2.6.0
 sqlparse==0.2.2
-opbeat==3.5.1
+opbeat==3.5.2
 
 django-statsd-mozilla==0.3.16
 django-markwhat==1.5
