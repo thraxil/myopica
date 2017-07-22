@@ -2,6 +2,7 @@ import django.contrib.sitemaps.views
 import django.contrib.auth.views
 import django.views.static
 
+from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
@@ -48,3 +49,9 @@ urlpatterns = [
     url(r'^(?P<gallery_slug>[^/]+)/(?P<slug>[^/]+)/sets/$',
         views.ImageSetsView.as_view()),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
