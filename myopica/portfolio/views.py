@@ -133,7 +133,7 @@ class AddImageView(LoggedInMixin, View):
                          ("image%s" % extension,
                           request.FILES['image'])
                          }
-                r = requests.post("http://reticulum.thraxil.org/", files=files)
+                r = requests.post("https://reticulum.thraxil.org/", files=files)
                 img.ahash = loads(r.text)["hash"]
                 img.extension = extension
 
