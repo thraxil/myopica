@@ -118,8 +118,6 @@ class AddImageView(LoggedInMixin, View):
                            form=AddImageForm()))
 
     def post(self, request):
-        if request.POST.get("slug", "") == "":
-            request.POST['slug'] = slugify(request.POST.get("title"))
         form = AddImageForm(request.POST, request.FILES)
         if form.is_valid():
             img = form.save(commit=False)
