@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.template.defaultfilters import slugify
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.base import View
