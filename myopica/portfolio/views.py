@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -133,7 +134,7 @@ class AddImageView(LoggedInMixin, View):
                          ("image%s" % extension,
                           request.FILES['image'])
                          }
-                r = requests.post("https://reticulum.thraxil.org/", files=files)
+                r = requests.post(settings.RETICULUM_URL, files=files)
                 img.ahash = loads(r.text)["hash"]
                 img.extension = extension
 

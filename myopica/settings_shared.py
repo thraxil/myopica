@@ -38,3 +38,4 @@ MIDDLEWARE_CLASSES += [ # noqa
 ]
 
 ALLOWED_HOSTS += ['myopica.org']  # noqa
+RETICULUM_URL = "https://reticulum.thraxil.org/"
