@@ -28,7 +28,7 @@ python-dateutil==2.6.1
 sqlparse==0.2.3
 opbeat==3.5.2
 
-django-statsd-mozilla==0.3.16
+django-statsd-mozilla==0.4.0
 django-markwhat==1.5.1
 django-appconf==1.0.2
 django-compressor==2.2
