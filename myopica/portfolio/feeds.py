@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
-from models import Image
+from .models import Image
 
 
 class MainFeed(Feed):

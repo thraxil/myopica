@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from django.views.generic.base import View
-from models import Gallery, Image, GalleryImage
-from forms import AddImageForm
+from .models import Gallery, Image, GalleryImage
+from .forms import AddImageForm
 from json import loads
 import os
 import requests

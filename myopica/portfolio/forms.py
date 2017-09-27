@@ -1,4 +1,4 @@
-from models import Image
+from .models import Image
 from django.forms import ModelForm
 
 
