@@ -51,6 +51,8 @@ try {
     node {
         stage('Checkout') {
             checkout scm
+						GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+						env.TAG = GIT_COMMIT_HASH
         }
         stage("Build") {
             retry_backoff(5) { sh "docker pull ${REPO}/${APP}:latest" }
