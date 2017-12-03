@@ -33,7 +33,7 @@ INSTALLED_APPS += [  # noqa
     'django.contrib.sitemaps',
 ]
 
-MIDDLEWARE_CLASSES += [ # noqa
+MIDDLEWARE += [ # noqa
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 

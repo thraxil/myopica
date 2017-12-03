@@ -122,8 +122,8 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 class GalleryImage(models.Model):
-    gallery = models.ForeignKey(Gallery)
-    image = models.ForeignKey(Image)
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
     ordinality = models.PositiveSmallIntegerField(default=count_images)
 
     def __unicode__(self):
