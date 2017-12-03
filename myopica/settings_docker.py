@@ -14,5 +14,5 @@ locals().update(
         celery=False,
         INSTALLED_APPS=INSTALLED_APPS,
         STATIC_ROOT=STATIC_ROOT,
-        MIDDLEWARE_CLASSES=MIDDLEWARE_CLASSES,
+        MIDDLEWARE=MIDDLEWARE,
     ))

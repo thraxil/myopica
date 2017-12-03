@@ -3,9 +3,10 @@ import django.contrib.auth.views
 import django.views.static
 
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
+from django.urls import include, path
 from django.views.generic.detail import DetailView
 from myopica.portfolio import views
 
@@ -30,8 +31,8 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view()),
+    path('admin/', admin.site.urls),
     url(r'^feeds/(?P<url>.*)/$', MainFeed()),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^sitemap\.xml$', django.contrib.sitemaps.views.sitemap,
         {'sitemaps': sitemaps}),
     url(r'^accounts/login/$', django.contrib.auth.views.login),
