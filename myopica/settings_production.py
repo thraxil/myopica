@@ -11,8 +11,8 @@ TEMPLATE_DEBUG = DEBUG
 
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), "../media")
 STATICFILES_DIRS = ()
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = False
+COMPRESS_OFFLINE = False
 
 AWS_S3_CUSTOM_DOMAIN = "d3bk6m0iptukrc.cloudfront.net"
 AWS_IS_GZIPPED = True
