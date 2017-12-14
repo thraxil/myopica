@@ -1,11 +1,11 @@
-{% load compress %}
+
 
 <html>
 <head><title>myopica: {% block title %}{% endblock %}</title>
 
-{% compress css %}
+
 <link rel="stylesheet" href="{{STATIC_URL}}css/site.css" />
-{% endcompress %}
+
 
 {% block css %}{% endblock %}
 {% block js %}{% endblock %}
