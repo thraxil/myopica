@@ -149,3 +149,8 @@ class AddImageView(LoggedInMixin, View):
             return render(request, self.template_name,
                           dict(galleries=galleries,
                                form=form))
+
+
+def serveerror(request):
+    1.0 / 0.0
+    return "blah"

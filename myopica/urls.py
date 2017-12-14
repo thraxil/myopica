@@ -32,6 +32,7 @@ sitemaps = {
 urlpatterns = [
     url(r'^$', views.IndexView.as_view()),
     path('admin/', admin.site.urls),
+    path('500/', views.serveerror),
     url(r'^feeds/(?P<url>.*)/$', MainFeed()),
     url(r'^sitemap\.xml$', django.contrib.sitemaps.views.sitemap,
         {'sitemaps': sitemaps}),
