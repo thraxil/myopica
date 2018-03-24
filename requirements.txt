@@ -26,7 +26,6 @@ six==1.11.0
 boto==2.48.0
 python-dateutil==2.7.0
 sqlparse==0.2.4
-opbeat==3.6.1
 raven==6.6.0
 
 django-statsd-mozilla==0.4.0
