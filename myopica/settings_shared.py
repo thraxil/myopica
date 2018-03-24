@@ -31,7 +31,6 @@ TEMPLATES = [
 INSTALLED_APPS += [  # noqa
     'myopica.portfolio',
     'django.contrib.sitemaps',
-    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE += [ # noqa
