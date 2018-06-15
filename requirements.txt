@@ -9,7 +9,7 @@ idna==2.7
 urllib3==1.22
 certifi==2018.4.16
 
-requests==2.19.0
+requests==2.19.1
 
 coverage==4.5.1
 
