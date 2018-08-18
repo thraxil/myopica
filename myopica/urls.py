@@ -1,5 +1,5 @@
 import django.contrib.sitemaps.views
-import django.contrib.auth.views
+import django.contrib.auth.views as auth_views
 import django.views.static
 
 from django.conf import settings
@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^feeds/(?P<url>.*)/$', MainFeed()),
     url(r'^sitemap\.xml$', django.contrib.sitemaps.views.sitemap,
         {'sitemaps': sitemaps}),
-    url(r'^accounts/login/$', django.contrib.auth.views.login),
+    url(r'^accounts/login/$', auth_views.LoginView.as_view()),
     url(r'smoketest/', include('smoketest.urls')),
     url(r'^uploads/(?P<path>.*)$', django.views.static.serve,
         {'document_root': '/var/tmp/myopica/media/'}),
