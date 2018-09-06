@@ -29,7 +29,7 @@ sqlparse==0.2.4
 raven==6.9.0
 
 django-statsd-mozilla==0.4.0
-django-markwhat==1.6.0
+django-markwhat==1.6.1
 django-appconf==1.0.2
 django-compressor==2.2
 django-storages==1.7
