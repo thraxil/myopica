@@ -1,6 +1,6 @@
 Django==2.1.2
 
-pytz==2018.5
+pytz==2018.6
 Markdown==2.6.11
 psycopg2-binary==2.7.5
 
