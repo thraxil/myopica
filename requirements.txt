@@ -11,7 +11,7 @@ certifi==2019.3.9
 
 requests==2.21.0
 
-coverage==4.5.2
+coverage==4.5.3
 
 pep8==1.7.1
 pyflakes==2.1.0
