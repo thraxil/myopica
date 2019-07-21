@@ -1,4 +1,4 @@
-Django==2.2.1
+Django==2.2.3
 
 pytz==2019.1
 
@@ -8,10 +8,10 @@ psycopg2-binary==2.8.3
 
 chardet==3.0.4
 idna==2.8
-urllib3==1.25.2
+urllib3==1.25.3
 certifi==2019.3.9
 
-requests==2.21.0
+requests==2.22.0
 
 coverage==4.5.3
 
@@ -33,12 +33,12 @@ raven==6.10.0
 django-statsd-mozilla==0.4.0
 django-markwhat==1.6.1
 django-appconf==1.0.3
-django-compressor==2.2
+django-compressor==2.3
 django-storages==1.7.1
-django-cacheds3storage==0.1.2
+django-cacheds3storage==0.2.1
 django-smoketest==1.1.0
 django-debug-toolbar==1.11
-django-waffle==0.16.0
+django-waffle==0.17.0
 django-jenkins==0.110.0
 
 thraxilsettings==3.1.1
