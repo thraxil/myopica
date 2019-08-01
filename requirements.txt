@@ -1,6 +1,6 @@
 Django==2.2.3
 
-pytz==2019.1
+pytz==2019.2
 
 Markdown==2.6.11 # pyup: <3.0
 
