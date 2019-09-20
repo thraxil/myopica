@@ -11,7 +11,7 @@ idna==2.8
 
 certifi==2019.9.11
 
-urllib3==1.25.3
+urllib3==1.25.5
 
 requests==2.22.0
 
