@@ -1,5 +1,7 @@
-on: push
-name: run tests
+on:
+  push:
+    branches: master
+name: deploy
 jobs:
   buildDockerImage:
     name: Build docker image
