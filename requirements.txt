@@ -15,7 +15,7 @@ urllib3==1.25.10
 
 requests==2.24.0
 
-coverage==5.2
+coverage==5.2.1
 
 pep8==1.7.1
 pyflakes==2.2.0
