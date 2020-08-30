@@ -51,7 +51,9 @@ class ReorderGalleryView(LoggedInMixin, View):
 class GalleryImageView(TemplateView):
     template_name = "portfolio/gallery_image.html"
 
-    def get_context_data(self, gallery_slug, image_slug):
+    def get_context_data(self, **kwargs):
+        gallery_slug = self.kwargs['gallery_slug']
+        image_slug = self.kwargs['image_slug']
         gallery = get_object_or_404(Gallery, slug=gallery_slug)
         image = get_object_or_404(Image, slug=image_slug)
         gi = get_object_or_404(GalleryImage, gallery=gallery, image=image)
