@@ -71,7 +71,7 @@ class Gallery(models.Model):
     description = models.TextField(blank=True)
     ordinality = models.PositiveSmallIntegerField(default=count_galleries)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
