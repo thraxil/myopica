@@ -40,3 +40,4 @@ MIDDLEWARE += [ # noqa
 ALLOWED_HOSTS += ['myopica.org']  # noqa
 RETICULUM_URL = "https://reticulum.thraxil.org/"
 USE_TZ = False
+AWS_DEFAULT_ACL = 'public-read'
