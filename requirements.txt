@@ -48,4 +48,4 @@ django-jenkins==0.110.0
 
 thraxilsettings==3.3.1
 
-asgiref==3.3.0
+asgiref==3.3.1
