@@ -13,7 +13,7 @@ certifi==2020.11.8
 
 urllib3==1.25.11
 
-requests==2.24.0
+requests==2.25.0
 
 coverage==5.3
 
