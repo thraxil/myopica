@@ -18,7 +18,7 @@ requests==2.25.1
 coverage==5.5
 
 pep8==1.7.1
-pyflakes==2.2.0
+pyflakes==2.3.0
 mccabe==0.6.1
 pycodestyle==2.6.0
 
