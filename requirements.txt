@@ -23,7 +23,7 @@ mccabe==0.6.1
 pycodestyle==2.7.0
 
 configparser==5.0.2
-flake8==3.9.1
+flake8==3.9.2
 statsd==3.3.0
 gunicorn==20.1.0
 six==1.16.0
