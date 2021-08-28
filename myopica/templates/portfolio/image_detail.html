@@ -42,5 +42,12 @@ itemprop="image"
 </ul>
 {% endif %}
 
+{% if not user.is_anonymous %}
+    <p>markdown embed:</p>
+    <pre>
+[![{{ object.title }}](https://d2f33fmhbh7cs9.cloudfront.net/image/{{object.ahash}}/300s/{{object.id}}{{object.extension}})](https://myopica.org{{object.get_absolute_url}})
+    </pre>
+{% endif %}
+
 </div>
 {% endblock %}
