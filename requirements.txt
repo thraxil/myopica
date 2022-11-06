@@ -44,6 +44,6 @@ django-waffle==3.0.0
 
 django-jenkins==0.110.0
 
-thraxilsettings==4.0.0
+thraxilsettings==4.0.1
 
 asgiref==3.5.2
