@@ -9,7 +9,7 @@ psycopg2-binary==2.9.5
 chardet==5.1.0
 idna==3.4
 
-certifi==2022.9.24
+certifi==2022.12.7
 
 urllib3==1.26.12
 
